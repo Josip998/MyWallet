@@ -68,4 +68,14 @@
         android:text="@string/click_to_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/privacy_policy_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Privacy Policy"
+        android:textColor="@android:color/holo_blue_light"
+        android:autoLink="web"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center" />
 </LinearLayout>

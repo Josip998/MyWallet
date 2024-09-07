@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -59,6 +60,13 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
+        });
+
+        TextView privacyPolicyLink = findViewById(R.id.privacy_policy_link);
+        privacyPolicyLink.setOnClickListener(v -> {
+            String url = "https://www.freeprivacypolicy.com/live/5494f6f2-dec2-46ff-abfc-b7f243d8ada2";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
         });
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {

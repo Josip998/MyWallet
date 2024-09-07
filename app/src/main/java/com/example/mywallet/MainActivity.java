@@ -1,6 +1,7 @@
 package com.example.mywallet;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
+        });
+
+        TextView privacyPolicyLink = findViewById(R.id.privacy_policy_link);
+        privacyPolicyLink.setOnClickListener(v -> {
+            String url = "https://www.freeprivacypolicy.com/live/5494f6f2-dec2-46ff-abfc-b7f243d8ada2";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
         });
 
 
