@@ -1,0 +1,63 @@
+<!-- res/layout/transaction_item.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/transaction_item_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Container for text views -->
+<LinearLayout
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_weight="1"
+android:orientation="vertical">
+
+<!-- TextView for transaction description -->
+<TextView
+    android:id="@+id/transaction_description"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="16sp"
+    android:text="Transaction Description" />
+
+<TextView
+    android:id="@+id/type"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="16sp"
+    android:text="Type" />
+
+<!-- TextView for transaction amount -->
+<TextView
+    android:id="@+id/transaction_amount"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="14sp"
+    android:text="Amount" />
+</LinearLayout>
+
+    <!-- Update and delete buttons -->
+<Button
+android:id="@+id/update_button"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="center"
+android:text="Update"
+android:layout_marginEnd="4dp" />
+
+<Button
+android:id="@+id/delete_button"
+android:layout_gravity="center"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:backgroundTint="@android:color/holo_red_dark"
+android:text="Delete" />
+    </LinearLayout>
+
+
+
+

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">My Wallet</string>
+    <string name="login">Login</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="register">Register</string>
+    <string name="click_to_login">Click to login</string>
+    <string name="click_to_register">Click to register</string>
+    <string name="logout">Logout</string>
+    <string name="delete_transaction">Delete Transaction</string>
+    <string name="update_transaction">Update Transaction</string>
+    <string name="view_transactions">View Transactions</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="delete_wallet">Delete Wallet</string>
+    <string name="update_wallet">Update Wallet</string>
+    <string name="view_wallets">View Wallets</string>
+    <string name="add_wallet">Add Wallet</string>
+    <string name="user_details">User Details</string>
+    <string name="balance">Balance</string>
+    <string name="save_wallet">Save Wallet</string>
+    <string name="wallet_name">Wallet Name</string>
+    <string name="transaction_amount">Transaction Amount</string>
+    <string name="transaction_type">Transaction Type</string>
+    <string name="amount">Amount</string>
+    <string name="description">Description</string>
+    <string name="balance_0_00">Balance: $0.00</string>
+    <string name="wallets">Wallets</string>
+</resources>
