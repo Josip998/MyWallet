@@ -32,30 +32,44 @@ public class AddWalletActivity extends AppCompatActivity {
         buttonSaveWallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = editTextWalletName.getText().toString();
-                String balanceStr = editTextWalletBalance.getText().toString();
+                String name = editTextWalletName.getText().toString().trim();
+                String balanceStr = editTextWalletBalance.getText().toString().trim();
+
+                // Validate that both fields are filled in
                 if (name.isEmpty() || balanceStr.isEmpty()) {
                     Toast.makeText(AddWalletActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                double balance = Double.parseDouble(balanceStr);
 
-                // Get the current logged-in user
+                // Regular expression to ensure the input is a valid number
+                if (!balanceStr.matches("^[0-9]+(\\.[0-9]{1,2})?$")) {
+                    Toast.makeText(AddWalletActivity.this, "Please enter a valid balance", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                double balance;
+                try {
+                    balance = Double.parseDouble(balanceStr);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(AddWalletActivity.this, "Invalid balance format", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Check if the user is logged in
                 FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                 if (currentUser == null) {
                     Toast.makeText(AddWalletActivity.this, "User not logged in", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // Create a new wallet object and add the userID
+                // Create the Wallet object
                 String userId = currentUser.getUid();
                 Wallet newWallet = new Wallet(name, balance, userId);
 
-                // Add the wallet document to Firestore
+                // Add the wallet to Firestore
                 db.collection("wallets").add(newWallet)
                         .addOnSuccessListener(documentReference -> {
                             Toast.makeText(AddWalletActivity.this, "Wallet added successfully", Toast.LENGTH_SHORT).show();
-                            // Pass back a result indicating success
                             Intent resultIntent = new Intent();
                             resultIntent.putExtra("wallet_added", true);
                             setResult(RESULT_OK, resultIntent);
@@ -68,6 +82,7 @@ public class AddWalletActivity extends AppCompatActivity {
         });
     }
 }
+
 
 
 

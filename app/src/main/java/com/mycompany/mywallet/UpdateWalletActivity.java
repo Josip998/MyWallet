@@ -54,8 +54,41 @@ public class UpdateWalletActivity extends AppCompatActivity {
     }
 
     private void updateWallet() {
-        String name = walletName.getText().toString();
-        double balance = Double.parseDouble(walletBalance.getText().toString());
+        String name = walletName.getText().toString().trim();
+        String balanceInput = walletBalance.getText().toString().trim();
+
+        // Check if the wallet name is empty
+        if (name.isEmpty()) {
+            Toast.makeText(this, "Wallet name cannot be empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Check if the balance input is empty
+        if (balanceInput.isEmpty()) {
+            Toast.makeText(this, "Please enter a valid balance", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Regular expression to ensure the input is a valid number (integer or decimal)
+        if (!balanceInput.matches("^[0-9]*\\.?[0-9]+$")) {
+            Toast.makeText(this, "Invalid balance. Please enter a valid number.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        double balance;
+        try {
+            balance = Double.parseDouble(balanceInput);
+
+            // Check if the parsed balance is a valid number and greater than or equal to 0
+            if (balance < 0) {
+                Toast.makeText(this, "Balance cannot be negative", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } catch (NumberFormatException e) {
+            // Handle invalid number formats
+            Toast.makeText(this, "Invalid balance. Please enter a valid number.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // Retrieve the userId of the currently logged-in user
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -75,6 +108,9 @@ public class UpdateWalletActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
 
 

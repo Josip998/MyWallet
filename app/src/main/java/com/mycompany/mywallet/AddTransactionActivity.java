@@ -38,8 +38,8 @@ public class AddTransactionActivity extends AppCompatActivity {
         walletId = getIntent().getStringExtra("wallet_id");
 
         saveButton.setOnClickListener(v -> {
-            String amountString = amountField.getText().toString();
-            String description = descriptionField.getText().toString();
+            String amountString = amountField.getText().toString().trim();
+            String description = descriptionField.getText().toString().trim();
             int selectedId = typeGroup.getCheckedRadioButtonId(); // Get selected RadioButton ID
 
             if (amountString.isEmpty() || description.isEmpty() || selectedId == -1) {
@@ -47,11 +47,24 @@ public class AddTransactionActivity extends AppCompatActivity {
                 return;
             }
 
+            // Validate that amount is a valid number
+            if (!amountString.matches("^[0-9]+(\\.[0-9]{1,2})?$")) {
+                Toast.makeText(AddTransactionActivity.this, "Please enter a valid amount", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            double amount;
+            try {
+                amount = Double.parseDouble(amountString);
+            } catch (NumberFormatException e) {
+                Toast.makeText(AddTransactionActivity.this, "Invalid amount format", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             // Retrieve the selected RadioButton text
             RadioButton selectedTypeButton = findViewById(selectedId);
             String type = selectedTypeButton.getText().toString();
 
-            double amount = Double.parseDouble(amountString);
             Timestamp now = new Timestamp(new Date()); // Current timestamp
             String transactionId = UUID.randomUUID().toString(); // Generate a unique ID
 
@@ -122,9 +135,8 @@ public class AddTransactionActivity extends AppCompatActivity {
                     Toast.makeText(AddTransactionActivity.this, "Error adding transaction", Toast.LENGTH_SHORT).show();
                 });
     }
-
-
 }
+
 
 
 
