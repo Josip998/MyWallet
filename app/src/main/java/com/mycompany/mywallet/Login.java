@@ -1,4 +1,4 @@
-package com.example.mywallet;
+package com.mycompany.mywallet;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

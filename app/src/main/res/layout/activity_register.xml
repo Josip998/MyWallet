@@ -71,7 +71,7 @@
             android:id="@+id/privacy_policy_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="I agree to the Privacy Policy and Terms of Service"
+            android:text="I agree to the Privacy Policy and Terms of Service!"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:layout_marginStart="8dp"

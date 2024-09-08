@@ -1,15 +1,13 @@
-package com.example.mywallet;
+package com.mycompany.mywallet;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -58,7 +56,20 @@ public class UpdateTransactionActivity extends AppCompatActivity {
 
     private void updateTransaction() {
         String description = editTextDescription.getText().toString();
-        double newAmount = Double.parseDouble(editTextAmount.getText().toString());
+        String amountString = editTextAmount.getText().toString().trim();
+
+        if (amountString.isEmpty()) {
+            editTextAmount.setError("Amount cannot be empty");
+            return; // Exit the method if the amount is empty
+        }
+
+        double newAmount;
+        try {
+            newAmount = Double.parseDouble(amountString);
+        } catch (NumberFormatException e) {
+            editTextAmount.setError("Invalid amount");
+            return; // Exit the method if the amount is invalid
+        }
 
         // Create a map to store updated transaction fields
         Map<String, Object> updates = new HashMap<>();
@@ -77,6 +88,7 @@ public class UpdateTransactionActivity extends AppCompatActivity {
                 })
                 .addOnFailureListener(e -> Toast.makeText(this, "Error updating transaction", Toast.LENGTH_SHORT).show());
     }
+
 
     private void adjustWalletBalance(double oldAmount, double newAmount) {
         double difference = newAmount - oldAmount;

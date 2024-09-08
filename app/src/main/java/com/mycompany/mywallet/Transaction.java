@@ -1,4 +1,4 @@
-package com.example.mywallet;
+package com.mycompany.mywallet;
 
 import com.google.firebase.Timestamp;
 

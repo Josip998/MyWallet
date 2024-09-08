@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mywallet"
+    namespace = "com.mycompany.mywallet"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.mywallet"
+        applicationId = "com.mycompany.mywallet"
         minSdk = 29
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
